@@ -1,0 +1,599 @@
+/* Custom styles - matching shikun.io layout exactly */
+
+/* ===== Fonts ===== */
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap");
+
+/* ===== Reset ===== */
+a, abbr, acronym, address, applet, article, aside, audio, b, big,
+blockquote, body, canvas, caption, center, cite, code, dd, del, details,
+dfn, div, dl, dt, em, fieldset, figcaption, figure, footer, form,
+h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins,
+kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, s, samp,
+section, small, span, strike, strong, sub, summary, sup, table, tbody,
+td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, code, pre, ol, ul, li, div {
+    color: #353535;
+    line-height: 1.6;
+    font-weight: 300;
+    font-size: 18px;
+    font-family: "Source Serif 4", serif;
+}
+
+a {
+    text-underline-offset: 1px;
+    color: inherit;
+    font-family: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(0,0,0,0.3);
+    transition: text-decoration-color 0.2s ease;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration-color: rgba(0,0,0,0.8);
+}
+
+b {
+    font-weight: 600;
+}
+
+em {
+    font-style: italic;
+}
+
+img {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+::selection {
+    color: white;
+    background: #353535;
+}
+
+/* ===== Container ===== */
+.container {
+    padding-right: calc(6vw - (100vw - 100%));
+    padding-left: 6vw;
+    flex: 1;
+}
+
+/* ===== Navigation Bar ===== */
+div.nav-bar {
+    background-color: transparent;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 9999;
+}
+
+div.nav-bar .nav-container-small {
+    display: none;
+}
+
+div.nav-bar .nav-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 25vw;
+    padding: 1.5em 0px;
+    position: relative;
+}
+
+div.nav-bar .nav-container .menu {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2em;
+    position: relative;
+}
+
+div.nav-bar .nav-container .menu a {
+    position: relative;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    color: inherit;
+    font-size: 24px;
+    font-family: "Source Serif 4", serif;
+    padding-bottom: 0.5em;
+}
+
+div.nav-bar .nav-container .menu a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+div.nav-bar .nav-container .menu a.active {
+    color: inherit;
+}
+
+div.nav-bar .nav-container .menu .menu-dot {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #ff9800;
+    border-radius: 50%;
+    transition: left 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+div.nav-bar .nav-container .social {
+    display: flex;
+    justify-content: space-between;
+    color: inherit;
+}
+
+div.nav-bar .nav-container .social .icon a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    text-align: center;
+}
+
+/* ===== Home Container ===== */
+div.home-container {
+    position: relative;
+    padding-bottom: 2vh;
+    display: grid;
+    left: 0;
+    right: 0;
+    grid-template-columns: 1fr;
+    row-gap: 10vw;
+}
+
+div.home-container .home-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+div.home-container .home-intro h1.title {
+    padding: 0 0 0.8em;
+    font-weight: 500;
+}
+
+div.home-container .home-intro p {
+    padding: 1em 0;
+}
+
+div.home-container .home-profile img {
+    width: 80%;
+    border-radius: 0;
+}
+
+/* ===== Page Title ===== */
+div.page-title {
+    padding-bottom: 1.5em;
+}
+
+div.page-title > h1.title {
+    padding: 0 0 0.8em;
+    font-weight: 500;
+}
+
+/* ===== About Container ===== */
+div.about-container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+div.about-container .about-intro {
+    padding: 1em 0;
+}
+
+div.about-container .about-intro p {
+    font-size: 0.85em;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    line-height: 1.8;
+}
+
+div.about-container .about-content {
+    padding-bottom: 2.5vh;
+}
+
+div.about-container .about-content p {
+    font-weight: 300;
+    padding-bottom: 0.5em;
+}
+
+div.about-container .about-content li {
+    padding-bottom: 0.5em;
+}
+
+div.about-container .about-content li b {
+    font-weight: 700;
+}
+
+div.about-container .about-content ul {
+    list-style: disc;
+    padding-left: 1.5em;
+}
+
+div.about-container .about-content ul.exp-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+/* ===== Experience Items ===== */
+div.about-container .about-content ul.exp-list li {
+    padding: 0.5em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+div.about-container .about-content ul.exp-list li:last-child {
+    border-bottom: none;
+}
+
+div.about-container .about-content ul.exp-list li .exp-info {
+    font-weight: 300;
+}
+
+div.about-container .about-content ul.exp-list li .exp-info b {
+    font-weight: 600;
+}
+
+div.about-container .about-content ul.exp-list li .exp-time {
+    font-size: 0.85em;
+    color: #888;
+    white-space: nowrap;
+    margin-left: 1em;
+}
+
+/* ===== Publications ===== */
+.pub-summary {
+    font-weight: 300;
+    padding-bottom: 1.5em;
+    color: #666;
+    font-style: italic;
+}
+
+.pub-year-heading {
+    padding: 1.5em 0 0.5em;
+    font-weight: 700;
+    font-size: 1.1em;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    margin-bottom: 0.5em;
+}
+
+.pub-item {
+    padding: 1em 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.pub-item:last-child {
+    border-bottom: none;
+}
+
+.pub-item .pub-venue {
+    font-weight: 300;
+    font-size: 0.88em;
+    font-style: italic;
+    color: #999;
+    padding-bottom: 0.1em;
+}
+
+.pub-item .pub-title {
+    font-weight: 600;
+    font-size: 1em;
+    line-height: 1.5;
+    padding-bottom: 0.2em;
+}
+
+.pub-item .pub-authors {
+    font-weight: 300;
+    font-size: 0.88em;
+    color: #666;
+}
+
+.pub-item .pub-authors .me {
+    font-weight: 600;
+    color: #353535;
+}
+
+/* ===== Button ===== */
+a.button {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9em;
+    padding: 0.5em 1.2em;
+    border-radius: 5px;
+    background-color: #353535;
+    color: #fff;
+    transition: background-color 0.2s ease;
+    margin-top: 0.5em;
+}
+
+a.button:hover {
+    background-color: #555;
+    color: #fff;
+    text-decoration: none;
+}
+
+a.button i {
+    margin-left: 0.4em;
+}
+
+/* ===== Footer ===== */
+footer {
+    padding: 1.5em 0px;
+    background-color: #fafafa;
+}
+
+footer p {
+    font-size: 0.8em;
+    color: #888;
+}
+
+footer a {
+    color: #888;
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 769px) {
+    a, p, td, th, tr, code, pre, ol, ul, li, div {
+        font-size: 15px;
+    }
+    h1 {
+        font-size: 24px;
+        line-height: 1.2;
+        padding: 1em 0;
+        font-weight: 700;
+    }
+    h1.title {
+        font-weight: 500;
+        font-size: 24px;
+        padding: 0 0 0.8em;
+    }
+
+    #first-content {
+        padding-top: 6em;
+    }
+
+    div.nav-bar {
+        position: fixed;
+        background-color: white !important;
+    }
+    div.nav-bar .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em 0;
+    }
+    div.nav-bar .nav-container .menu {
+        gap: 1.5em;
+    }
+    div.nav-bar .nav-container .menu a {
+        font-size: 15px;
+        padding-bottom: 0;
+    }
+    div.nav-bar .nav-container .menu .menu-dot {
+        display: none;
+    }
+    div.nav-bar .nav-container .social {
+        gap: 1em;
+    }
+    div.nav-bar .nav-container .social .icon a {
+        font-size: 15px;
+    }
+
+    div.home-container {
+        grid-template-columns: 1fr;
+        row-gap: 2em;
+    }
+    div.home-container .home-profile img {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    div.about-container {
+        grid-template-columns: 1fr;
+    }
+
+    div.about-container .about-content ul.exp-list li {
+        flex-direction: column;
+        gap: 0;
+    }
+    div.about-container .about-content ul.exp-list li .exp-time {
+        margin-left: 0;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .container {
+        padding-right: calc(8.5vw - (100vw - 100%));
+        padding-left: 8.5vw;
+    }
+    a, p, td, th, tr, code, pre, ol, ul, li, div {
+        font-size: 16px;
+    }
+    h1 {
+        font-size: 24px;
+        line-height: 1.2;
+        padding: 1em 0;
+        font-weight: 700;
+    }
+    h1.title {
+        padding: 0 0 0.8em;
+        font-weight: 500;
+        font-size: 24px;
+    }
+
+    #first-content {
+        padding-top: 8em;
+    }
+    div.nav-bar .nav-container {
+        padding: 3em 0px;
+    }
+    div.nav-bar .nav-container .menu a {
+        font-size: 17px;
+    }
+    div.nav-bar .nav-container .social .icon a {
+        font-size: 17px;
+    }
+
+    div.home-container {
+        display: grid;
+        padding: 0 0 5vh;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 5vw;
+    }
+    div.home-container .home-intro p {
+        padding: 0;
+    }
+
+    div.about-container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        column-gap: 5vw;
+    }
+    div.about-container .about-intro {
+        padding-top: 0;
+        padding-bottom: 2.5vh;
+    }
+    div.about-container .about-content {
+        padding-bottom: 2.5vh;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .container {
+        padding-right: calc(12vw - (100vw - 100%));
+        padding-left: 12vw;
+    }
+    a, p, td, th, tr, code, pre, ol, ul, li, div {
+        font-size: 16px;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    h1.title {
+        font-size: 24px;
+    }
+
+    #first-content {
+        padding-top: 10em;
+    }
+    div.nav-bar .nav-container {
+        padding: 4em 0px;
+    }
+
+    div.home-container {
+        column-gap: 10vw;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .container {
+        padding-right: calc(15vw - (100vw - 100%));
+        padding-left: 15vw;
+    }
+    a, p, td, th, tr, code, pre, ol, ul, li, div {
+        font-size: 17px;
+    }
+    h1 {
+        font-size: 36px;
+    }
+    h1.title {
+        padding: 0 0 0.8em;
+        font-weight: 500;
+        font-size: 36px;
+    }
+
+    #first-content {
+        padding-top: 12em;
+    }
+    div.nav-bar .nav-container {
+        padding: 5em 0px;
+    }
+    div.nav-bar .nav-container .menu a {
+        font-size: 18px;
+    }
+    div.nav-bar .nav-container .social .icon a {
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .container {
+        padding-right: calc(18vw - (100vw - 100%));
+        padding-left: 18vw;
+    }
+    a, p, td, th, tr, code, pre, ol, ul, li, div {
+        font-size: 18px;
+    }
+    h1 {
+        font-size: 36px;
+    }
+    h1.title {
+        padding: 0 0 0.6em;
+        font-weight: 500;
+        font-size: 42px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .container {
+        padding-right: calc(22vw - (100vw - 100%));
+        padding-left: 22vw;
+    }
+    div.home-container {
+        column-gap: 14vw;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    .container {
+        padding-right: calc(24vw - (100vw - 100%));
+        padding-left: 24vw;
+    }
+    a, p, td, th, tr, code, pre, ol, ul, li, div {
+        font-size: 20px;
+    }
+    h1.title {
+        font-size: 42px;
+    }
+    #first-content {
+        padding-top: 14em;
+    }
+    div.nav-bar .nav-container {
+        padding: 6em 0px;
+    }
+    div.nav-bar .nav-container .menu a {
+        font-size: 20px;
+    }
+    div.nav-bar .nav-container .social .icon a {
+        font-size: 20px;
+    }
+}
