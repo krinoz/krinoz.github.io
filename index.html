@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krinos Li</title>
-    <script>try { if (localStorage.getItem("krinos-theme") === "day") document.documentElement.classList.add("day"); } catch (e) {}</script>
+    <script>try { var saved = localStorage.getItem("krinos-theme"); var hour = new Date().getHours(); if (saved === "day" || (saved !== "night" && hour >= 7 && hour < 19)) document.documentElement.classList.add("day"); } catch (e) {}</script>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/32x32.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
