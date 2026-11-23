@@ -53,6 +53,10 @@
                         <div class="authors">Y Dong*, X Xiao*, XX Zhuang*, W Wu*, ZY Wang, S Zhang, JT Li, K Zhang, WY
                             Fu, JM Chen, SH Xiong, S Deng, <b>K Li</b>, C Ma, W Jin, X Jin, Q Cai, HM Shen, M Li, H Su,
                             JB Wan, H Yu, D Ouyang, K Ye, EF Fang, CS Tan, G Yang, Z Niu, JH Lu</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Dysfunctional autophagy, a key cellular cleaning process, is a key driver of brain ageing and neurodegenerative diseases such as Alzheimer’s disease (AD). However, developing effective treatments by enhancing autophagy has been challenging, as most known compounds act through the broad mTOR pathway, risking side effects, and few can effectively penetrate the brain. To address this, we developed DeepDrugDiscovery—a mechanism-aware, AI-powered screening platform incorporating ADMET and blood–brain barrier penetrability predictions. Here we show that this platform successfully identified novel, mTOR-independent autophagy enhancers, with two lead compounds demonstrating an ability to cross the blood–brain barrier, clear AD-related protein aggregates and restore memory function in worm and mouse AD models. By releasing DeepDrugDiscovery as an open-source, modular tool, we offer a user-friendly AI platform that enables customized therapeutic screening. Our work establishes a scalable, AI-driven pipeline that integrates cross-species validation to rapidly discover mechanism-based therapeutics for diseases with high unmet medical need.</p>
+                        </details>
                     </div>
                 </li>
                 <li data-tags="multimodal life">
@@ -62,6 +66,10 @@
                             Regulating the GSK-3β–TFEB Signaling Axis</div>
                         <div class="authors">A Li, X Xiao, G Liu, <b>K Li</b>, Y Ling, S Deng, C Xu, SQ Cao, J Wen, G
                             Lu, G Yang, EF Fang, D Qin, H Su</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Lysosomal dysfunction is a core pathological driver of neurodegenerative diseases such as amyotrophic lateral sclerosis (ALS). Transcription factor EB (TFEB) serves as a master regulator of lysosomal biogenesis, and its pharmacological activation represents a strategy to restore lysosomal function in disease and aging. Here, using a series of artificial intelligence-powered computational virtual screening workflows, we have identified isoginkgetin (ISO), a small-molecule compound, as a potent TFEB activator that promotes mechanistic target of rapamycin complex 1 (mTORC1)–independent TFEB nuclear translocation to enhance lysosomal biogenesis and function. Mechanistically, ISO functions as an ATP-competitive inhibitor that binds to the key Lys85 residue within the ATP-binding pocket of glycogen synthase kinase 3β (GSK-3β), thereby regulating the GSK-3β–TFEB signaling axis to activate TFEB nuclear translocation. Functionally, ISO improves lysosomal function and protects motor neurons differentiated from induced pluripotent stem cells derived from patients with ALS from degeneration. Collectively, these results support the hypothesis that lysosomal dysfunction is a druggable target for ALS.</p>
+                        </details>
                     </div>
                 </li>
             </ul>
@@ -77,6 +85,10 @@
                             Comprehension of Complete Musical Scores</div>
                         <div class="authors">C Dai*, Y Yang*, <b>K Li*</b>, H Zhou, S Liang, Z Bo, E Liu, G Jin, H An,
                             H Zhang, et al.</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Understanding complete musical scores entails integrated reasoning over pitch, rhythm, harmony, and large-scale structure, yet the ability of Large Language Models and Vision–Language Models to interpret full musical notation remains insufficiently examined. We introduce Musical Score Understanding Benchmark (MSU-Bench), a human-curated benchmark for score-level musical understanding across textual (ABC notation) and visual (PDF) modalities. MSU-Bench contains 1,800 generative question–answer pairs from works by Bach, Beethoven, Chopin, Debussy, and others, organised into four levels of increasing difficulty, ranging from onset information to texture and form. Evaluations of more than fifteen state-of-the-art models, in both zero-shot and fine-tuned settings, reveal pronounced modality gaps, unstable level-wise performance, and challenges in maintaining multilevel correctness. Fine-tuning substantially improves results across modalities while preserving general knowledge, positioning MSU-Bench as a robust foundation for future research in multimodal reasoning. The benchmark and code are available at https://github.com/Congren-Dai/MSU-Bench.</p>
+                        </details>
                     </div>
                 </li>
                 <li data-tags="agentic">
@@ -84,6 +96,10 @@
                     <div>
                         <div class="title">How Adversarial Environments Mislead Agentic AI?</div>
                         <div class="authors">Z Zhan, H Zhou, Z Li, P Jing, <b>K Li</b>, H Haddadi</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Tool-integrated agents are deployed on the premise that external tools ground their outputs in reality. Yet this very reliance creates a critical attack surface. Current evaluations benchmark capability in benign settings, asking “can the agent use tools correctly” but never “what if the tools lie”. We identify this Trust Gap: agents are evaluated for performance, not for skepticism. We formalize this vulnerability as Adversarial Environmental Injection (AEI), a threat model where adversaries compromise tool outputs to deceive agents. AEI constitutes environmental deception: constructing a “fake world” of poisoned search results and fabricated reference networks around unsuspecting agents. We operationalize this via Potemkin, a Model Context Protocol (MCP)-compatible harness for plug-and-play robustness testing. We identify two orthogonal attack surfaces: The Illusion (breadth attacks) poison retrieval to induce epistemic drift toward false beliefs, while The Maze (depth attacks) exploit structural traps to cause policy collapse into infinite loops. Across 11,000+ runs on five frontier agents, we find a stark robustness gap: resistance to one attack often increases vulnerability to the other, demonstrating that epistemic and navigational robustness are distinct capabilities.</p>
+                        </details>
                     </div>
                 </li>
                 <li data-tags="agentic">
@@ -91,6 +107,10 @@
                     <div>
                         <div class="title">Systems-Level Attack Surface of Edge Agent Deployments on IoT</div>
                         <div class="authors">Z Zhan, <b>K Li</b>, Y Zhang, H Haddadi</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Edge deployment of LLM agents on IoT hardware introduces attack surfaces absent from cloud-hosted orchestration. We present an empirical security analysis of three architectures (cloud-hosted, edge-local swarm, and hybrid) using a multi-device home-automation testbed with local MQTT messaging and an Android smartphone as an edge inference node. We identify five systems-level attack surfaces, including two emergent failures observed during live testbed operation: coordination-state divergence and induced trust erosion. We frame core security properties as measurable systems metrics: data egress volume, failover window exposure, sovereignty boundary integrity, and provenance chain completeness. Our measurements show that edge-local deployments eliminate routine cloud data exposure but silently degrade sovereignty when fallback mechanisms trigger, with boundary crossings invisible at the application layer. Provenance chains remain complete under cooperative operation yet are trivially bypassed without cryptographic enforcement. Failover windows create transient blind spots exploitable for unauthorised actuation. These results demonstrate that deployment architecture, not just model or prompt design, is a primary determinant of security risk in agent-controlled IoT systems.</p>
+                        </details>
                     </div>
                 </li>
                 <li data-tags="agentic">
@@ -98,6 +118,10 @@
                     <div>
                         <div class="title">HearthNet: Edge Multi-Agent Orchestration for Smart Homes</div>
                         <div class="authors">Z Zhan, <b>K Li</b>, Y Zhang, H Haddadi</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Smart-home users increasingly want to control their homes in natural language rather than assemble rules, dashboards, and API integrations by hand. At the same time, real deployments are brittle: devices fail, integrations break, and recoveries often require manual intervention. Existing agent toolkits are effective for session-scoped delegation, but smart-home control operates under a different scenario: it is persistent, event-driven, failure-prone, and tied to physical devices with no shared context window. We present HearthNet, an edge multi-agent orchestration system for smart homes. HearthNet deploys a small set of persistent, role-specialized LLM agents at the home hub, where they coordinate through MQTT, Git-backed shared state, and root-issued actuation leases to govern heterogeneous devices through thin adapters. This design externalizes context, preserves execution history, and separates planning, verification, authorization, and actuation across explicit boundaries. Our current prototype runs on commodity edge hardware and Android devices; it keeps orchestration, state management, and device control on-premise while using hosted LLM APIs for inference. We demonstrate the system through three live scenarios: intent-driven multi-agent coordination from ambiguous natural language, conflict resolution with timeline-based tracing, and rejection of stale or unauthorized commands before device actuation.</p>
+                        </details>
                     </div>
                 </li>
                 <li data-tags="life">
@@ -107,6 +131,10 @@
                             Perivascular Spaces</div>
                         <div class="authors">L He, <b>K Li</b>, R He, S Ingala, L Lorenzini, M de Bruijne, F Barkhof,
                             RH Davies, CH Sudre</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Cerebral small vessel disease (CSVD) markers, specifically enlarged perivascular spaces (EPVS) and lacunae, present a unique challenge in medical image analysis due to their radiological mimicry. Standard segmentation networks struggle with feature interference and extreme class imbalance when handling these divergent targets simultaneously. To address these issues, we propose a morphology-decoupled framework where Zero-Initialized Gated Cross-Task Attention exploits dense EPVS context to guide sparse lacune detection. Furthermore, biological and topological consistency are enforced via a mixed-supervision strategy integrating Mutual Exclusion and Centerline Dice losses. Finally, we introduce an Anatomically-Informed Inference Calibration mechanism to dynamically suppress false positives based on tissue semantics. Extensive 5-fold cross-validation on the VALDO 2021 dataset (N = 40) demonstrates state-of-the-art performance, notably surpassing task winners in lacunae detection precision (71.1%, p = 0.01) and F1-score (62.6%, p = 0.03). Furthermore, evaluation on the external EPAD cohort (N = 1762) confirms the model’s robustness for large-scale population studies. Code: https://github.com/lucas-ucl/Lacune-EPVS-MTL.</p>
+                        </details>
                     </div>
                 </li>
                 <li data-tags="life">
@@ -116,6 +144,10 @@
                             Lacune Detection</div>
                         <div class="authors">L He, <b>K Li</b>, H Zhang, C Meng, L Lorenzini, S Ingala, RH Davies, CH
                             Sudre</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Automated detection of lacunar infarction—a key marker of cerebral small vessel disease—is challenging due to their small size and morphological similarity to mimics. To enhance detection accuracy while minimizing false positives, we propose Swin-DS, a multitask framework that simultaneously performs segmentation and distance map regression. Our approach incorporates deep supervision across decoder resolutions to enhance multi-scale feature learning, with task losses dynamically balanced through homoscedastic uncertainty weighting. On the Public VALDO challenge dataset, SwinDS achieves competitive performance, with an F1-score of 0.513 and the lowest reported false positives per subject (FPs/subject) of 3.37 among published results. The framework’s effective balance between sensitivity and specificity results in improved robustness and clinical relevance, addressing a key limitation of existing methods.</p>
+                        </details>
                     </div>
                 </li>
                 <li data-tags="life">
@@ -124,6 +156,10 @@
                         <div class="title">CenSynCMB: Centre Maps and Physics-Guided Synthesis for Microbleed Detection</div>
                         <div class="authors">L He, H Zhang, <b>K Li</b>, AF Saccoh, S Ingala, R Rehwald, M de Bruijne, F
                             Barkhof, RH Davies, CH Sudre</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Cerebral microbleeds (CMBs) are MRI markers of small vessel disease and the microbleed component of amyloid-related imaging abnormalities (ARIA-H), but their small size, sparsity, and similarity to vessels, calcification-like foci, and artefacts make automated detection difficult. We propose CenSynCMB, a centre-guided and mimic-aware framework combining a 3D Attention U-Net, auxiliary centre-map supervision, false-negative-driven reweighting, and fold-wise physics-guided synthesis of positive CMBs and labelled hard negatives. Synthetic data expose the detector to compact lesions and common mimics without validation or test leakage. On VALDO Task 2, CenSynCMB achieved the best local-comparison lesion-level F1 (74.3 ± 8.8%, p = 0.020); on external AIBL SWI, it achieved the highest local-comparison recall (88.5 ± 6.9%, p = 0.0058) and F1 (65.0 ± 6.9%, p = 0.0016). Together, these results support scalable CMB candidate extraction in large, unlabelled MRI cohorts, while highlighting cohort-specific calibration as the next step toward reliable burden estimation.</p>
+                        </details>
                     </div>
                 </li>
                 <li data-tags="life">
@@ -132,6 +168,10 @@
                         <div class="title">Agnostic Biomolecular Binding Affinity Prediction via Frame Averaging Graph
                             Transformer</div>
                         <div class="authors"><b>K Li</b>, L He, X Xiao, S Deng, Z Zhong, Y Yang, G Yang</div>
+                        <details class="abs">
+                            <summary>Abstract</summary>
+                            <p>Predicting binding affinity between biomolecules is a critical task in drug discovery, where deep learning methods have achieved significant progress. However, many existing approaches employ modality-specific network architectures, limiting their direct applicability across diverse biomolecular interaction types. In this work, we propose F3Affinity, a novel structure-based graph transformer that is agnostic to biomolecular interaction type in its architectural design. Leveraging a frame averaging technique, our model flexibly learns SE(3)-invariant representations of input structures. We further demonstrate that F3Affinity can be independently applied to various binding affinity prediction benchmarks without requiring any pre-trained embeddings, including protein-ligand, protein-protein, and protein-nucleic acid interactions, and achieving competitive performance. These results validate its broad applicability and effectiveness across multiple biomolecular interaction types.</p>
+                        </details>
                     </div>
                 </li>
             </ul>

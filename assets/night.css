@@ -80,6 +80,12 @@ p .tint, .pub-head b.tint { padding: 0.02em 0.32em; }
 .pub-list .title { font-family: "Instrument Serif", serif; font-size: 25px; line-height: 1.25; color: #fff; }
 .pub-list .authors { margin-top: 8px; font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,.5); }
 .pub-list .authors b { color: #fff; }
+.pub-list .abs { margin-top: 14px; }
+.pub-list .abs summary { cursor: pointer; width: fit-content; font-size: 13px; letter-spacing: .06em; color: rgba(255,255,255,.62); list-style: none; }
+.pub-list .abs summary::-webkit-details-marker { display: none; }
+.pub-list .abs summary::before { content: "+  "; color: rgba(255,255,255,.4); }
+.pub-list .abs[open] summary::before { content: "–  "; }
+.pub-list .abs p { margin-top: 10px; max-width: 68em; font-size: 15px; line-height: 1.65; color: rgba(255,255,255,.72); }
 
 footer { padding: 64px 0 40px; font-size: 13px; color: rgba(255,255,255,.4); }
 
