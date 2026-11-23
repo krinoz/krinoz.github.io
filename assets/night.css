@@ -63,7 +63,7 @@ p .tint, .pub-head b.tint { padding: 0.02em 0.32em; }
 .pub-head h1 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: clamp(56px, 8vw, 112px); line-height: .95; letter-spacing: -0.02em; color: #fff; }
 .pub-head h1 em { font-style: italic; color: rgba(255,255,255,.55); }
 .pub-head p { margin-top: 28px; max-width: 40em; color: rgba(255,255,255,.75); }
-.pub-head .note { margin-top: 10px; font-size: 14px; color: rgba(255,255,255,.45); }
+.pub-head .note { margin-top: 16px; font-size: 14px; color: rgba(255,255,255,.45); }
 
 .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
 .filters button { font: inherit; font-size: 14px; color: rgba(255,255,255,.6); background: rgba(255,255,255,.03);

@@ -1,7 +1,7 @@
 // Morandi chips. The first two letters pick the colour, so the same words match on every page.
 const HIGHLIGHTS = [
-    "#aeb8c4", "#c2b3c0", "#c4b2a8", "#b7b1a6", "#c9c2b2",
-    "#d4c7c0", "#cbbba4", "#c5c0b8", "#b3c0b4", "#cfc3b4"
+    "#aeb8c4", "#c2b3c0", "#c9a8a4", "#b7b1a6", "#b4c7b2",
+    "#d4c7c0", "#a8bdd0", "#c5c0b8", "#b3c0b4", "#cfc3b4"
 ];
 
 function highlightKey(text) {
