@@ -6,8 +6,14 @@
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const parseColor = (value, fallback) => (value ? value.split(",").map((c) => Number(c) / 255) : fallback);
-    const fg = parseColor(canvas.dataset.fg, [1, 1, 1]);
-    const bg = parseColor(canvas.dataset.bg, [0, 0, 0]);
+    const PALETTE = {
+        night: { bg: [5, 5, 6], fg: [235, 235, 240], glow: [158, 219, 255] },
+        day: { bg: [243, 239, 230], fg: [36, 31, 28], glow: [62, 81, 102] },
+    };
+    const scale = (rgb) => rgb.map((c) => c / 255);
+    let fg = parseColor(canvas.dataset.fg, [1, 1, 1]);
+    let bg = parseColor(canvas.dataset.bg, [0, 0, 0]);
+    let glow = scale(PALETTE.night.glow);
     const cycling = canvas.dataset.cycle !== "off";
 
     const SLOT_S = 10;
@@ -551,13 +557,14 @@
     const fragmentSource = `
         precision mediump float;
         uniform vec3 uColor;
+        uniform vec3 uGlow;
         varying float vAlpha;
         varying float vGlow;
         void main() {
             vec2 c = gl_PointCoord - 0.5;
             float r = dot(c, c);
             if (r > 0.25) discard;
-            vec3 color = mix(uColor, vec3(0.62, 0.86, 1.0), vGlow);
+            vec3 color = mix(uColor, uGlow, vGlow);
             gl_FragColor = vec4(color, vAlpha * smoothstep(0.25, 0.12, r));
         }
     `;
@@ -627,15 +634,24 @@
     bindAttr(attr.seed, seedBuffer);
 
     const u = {};
-    for (const name of ["uViewProj", "uTime", "uAspect", "uMouse", "uMouseStrength", "uPixelRatio", "uColor", "uMix",
+    for (const name of ["uViewProj", "uTime", "uAspect", "uMouse", "uMouseStrength", "uPixelRatio", "uColor", "uGlow", "uMix",
         "uFromKind", "uToKind", "uFromTilt", "uToTilt", "uFromScale", "uToScale", "uFromShift", "uToShift", "uFromDrop", "uToDrop", "uFromRoll", "uToRoll", "uCenter", "uEye"]) {
         u[name] = gl.getUniformLocation(program, name);
     }
 
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-    gl.clearColor(bg[0], bg[1], bg[2], 1);
-    gl.uniform3f(u.uColor, fg[0], fg[1], fg[2]);
+
+    function applyPalette(name) {
+        const chosen = PALETTE[name] || PALETTE.night;
+        bg = scale(chosen.bg);
+        fg = scale(chosen.fg);
+        glow = scale(chosen.glow);
+        gl.clearColor(bg[0], bg[1], bg[2], 1);
+        gl.uniform3f(u.uColor, fg[0], fg[1], fg[2]);
+        gl.uniform3f(u.uGlow, glow[0], glow[1], glow[2]);
+    }
+    applyPalette(document.documentElement.classList.contains("day") ? "day" : "night");
 
     function perspective(fovY, aspect, near, far) {
         const f = 1 / Math.tan(fovY / 2);
@@ -847,6 +863,7 @@
             setShape(index);
         },
         onChange: (fn) => listeners.push(fn),
+        setPalette: applyPalette,
     };
 
     resize();

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krinos Li</title>
+    <script>try { if (localStorage.getItem("krinos-theme") === "day") document.documentElement.classList.add("day"); } catch (e) {}</script>
     <link rel="icon" type="image/png" sizes="32x32" href="assets/32x32.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
@@ -23,6 +24,7 @@
             <div class="links">
                 <a class="active" href="index.html">Home</a>
                 <a href="publications.html">Publications</a>
+                <button type="button" class="theme" id="theme">Day</button>
             </div>
         </nav>
 
@@ -99,6 +101,7 @@
     </div>
 
     <script src="assets/morph.js"></script>
+    <script src="assets/theme.js"></script>
     <script>
         const switcher = document.getElementById("shapes");
         if (window.particleScene) {
