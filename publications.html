@@ -1,143 +1,164 @@
+<!DOCTYPE html>
 <html lang="en-GB">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publications - Krinos Li</title>
     <meta name="description" content="Publications by Krinos Li.">
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    <meta name="robots" content="all">
-    <meta content="en_EN" property="og:locale">
-    <meta content="Krinos Li" property="og:site_name">
-    <meta content="website" property="og:type">
-    <meta content="https://krinoz.github.io/publications" property="og:url">
-    <meta content="Publications - Krinos Li" property="og:title">
-
-    <link rel="stylesheet" type="text/css" media="all" href="assets/stylesheets/custom.css" />
-    <link href="assets/fontawesome-free-7.2.0-web/css/all.min.css" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="media/32x32.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="media/128x128.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="media/180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/night.css">
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <div class="nav-bar" style="color:#353535">
-        <div class="container">
-            <div class="nav-container">
-                <div class="menu">
-                    <a href="index.html">Home</a>
-                    <a class="active" href="publications.html">Publications</a>
-                    <div class="menu-dot"></div>
-                </div>
-                <div class="social">
-                    <div class="icon"><a href="mailto:krinos.work@outlook.com"><i class="fa-solid fa-envelope"></i></a>
+    <canvas id="wave" data-fixed data-bg="5,5,6" data-fg="235,235,240" aria-hidden="true"></canvas>
+    <div class="veil dense"></div>
+
+    <div class="page">
+        <nav>
+            <span>Krinos Li</span>
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a class="active" href="publications.html">Publications</a>
+            </div>
+        </nav>
+
+        <header class="pub-head">
+            <h1>Selected <em>Publications</em></h1>
+            <p>My research spans <b class="tint">Multimodal AI🪬</b>, <b class="tint">Agentic AI🦾</b>, and <b class="tint">AI for Life Science🔬</b>. I have
+                multiple peer-reviewed publications at leading academic venues, including <b>Nature Biomedical
+                    Engineering</b>, <b>Pharmacological Research</b>, <b>ACL</b>, <b>ICASSP</b>, <b>MICCAI</b>,
+                <b>BIBM</b>.</p>
+            <p class="note">* indicates equal contribution.</p>
+            <div class="filters" role="group" aria-label="Filter by research theme">
+                <button type="button" data-filter="all" aria-pressed="true">All</button>
+                <button type="button" data-filter="multimodal" aria-pressed="false">Multimodal AI🪬</button>
+                <button type="button" data-filter="agentic" aria-pressed="false">Agentic AI🦾</button>
+                <button type="button" data-filter="life" aria-pressed="false">AI for Life Science🔬</button>
+            </div>
+        </header>
+
+        <section>
+            <h2><span>01</span>Journals</h2>
+            <ul class="pub-list">
+                <li data-tags="multimodal life">
+                    <div class="venue"><b>Nature Biomedical Engineering</b>2026</div>
+                    <div>
+                        <div class="title">DeepDrugDiscovery Identifies Blood–Brain Barrier Permeable Autophagy
+                            Enhancers for Alzheimer's Disease 🪬🔬</div>
+                        <div class="authors">Y Dong*, X Xiao*, XX Zhuang*, W Wu*, ZY Wang, S Zhang, JT Li, K Zhang, WY
+                            Fu, JM Chen, SH Xiong, S Deng, <b>K Li</b>, C Ma, W Jin, X Jin, Q Cai, HM Shen, M Li, H Su,
+                            JB Wan, H Yu, D Ouyang, K Ye, EF Fang, CS Tan, G Yang, Z Niu, JH Lu</div>
                     </div>
-                    <div class="icon"><a href="https://scholar.google.co.uk/citations?user=fj6El1gAAAAJ&hl=en"
-                            target="_blank"><i class="fa-solid fa-graduation-cap"></i></a></div>
-                    <div class="icon"><a href="https://github.com/krinoz" target="_blank"><i
-                                class="fa-brands fa-github-alt"></i></a></div>
-                    <div class="icon"><a href="https://www.linkedin.com/in/krinos/" target="_blank"><i
-                                class="fa-brands fa-linkedin-in"></i></a></div>
-                </div>
-            </div>
-        </div>
+                </li>
+                <li data-tags="multimodal life">
+                    <div class="venue"><b>Pharmacological Research</b>2026</div>
+                    <div>
+                        <div class="title">Isoginkgetin Protects Against Degeneration of ALS Motor Neurons via
+                            Regulating the GSK-3β–TFEB Signaling Axis 🪬🔬</div>
+                        <div class="authors">A Li, X Xiao, G Liu, <b>K Li</b>, Y Ling, S Deng, C Xu, SQ Cao, J Wen, G
+                            Lu, G Yang, EF Fang, D Qin, H Su</div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span>02</span>Conferences</h2>
+            <ul class="pub-list">
+                <li data-tags="multimodal">
+                    <div class="venue"><b>ACL Main Conference</b>2026</div>
+                    <div>
+                        <div class="title">Musical Score Understanding Benchmark: Evaluating Large Language Models'
+                            Comprehension of Complete Musical Scores 🪬</div>
+                        <div class="authors">C Dai*, Y Yang*, <b>K Li*</b>, H Zhou, S Liang, Z Bo, E Liu, G Jin, H An,
+                            H Zhang, et al.</div>
+                    </div>
+                </li>
+                <li data-tags="agentic">
+                    <div class="venue"><b>ACL Findings</b>2026</div>
+                    <div>
+                        <div class="title">How Adversarial Environments Mislead Agentic AI? 🦾</div>
+                        <div class="authors">Z Zhan, H Zhou, Z Li, P Jing, <b>K Li</b>, H Haddadi</div>
+                    </div>
+                </li>
+                <li data-tags="agentic">
+                    <div class="venue"><b>EuroMLSys</b>2026</div>
+                    <div>
+                        <div class="title">Systems-Level Attack Surface of Edge Agent Deployments on IoT 🦾</div>
+                        <div class="authors">Z Zhan, <b>K Li</b>, Y Zhang, H Haddadi</div>
+                    </div>
+                </li>
+                <li data-tags="agentic">
+                    <div class="venue"><b>ACM Conference on AI and Agentic Systems</b>2026</div>
+                    <div>
+                        <div class="title">HearthNet: Edge Multi-Agent Orchestration for Smart Homes 🦾</div>
+                        <div class="authors">Z Zhan, <b>K Li</b>, Y Zhang, H Haddadi</div>
+                    </div>
+                </li>
+                <li data-tags="life">
+                    <div class="venue"><b>MICCAI</b>2026</div>
+                    <div>
+                        <div class="title">A Unified Framework for Joint Detection of Lacunes and Enlarged
+                            Perivascular Spaces 🔬</div>
+                        <div class="authors">L He, <b>K Li</b>, R He, S Ingala, L Lorenzini, M de Bruijne, F Barkhof,
+                            RH Davies, CH Sudre</div>
+                    </div>
+                </li>
+                <li data-tags="life">
+                    <div class="venue"><b>ICASSP</b>2026</div>
+                    <div>
+                        <div class="title">Swin-DS: A Deeply Supervised Transformer with Geometric Guidance for Robust
+                            Lacune Detection 🔬</div>
+                        <div class="authors">L He, <b>K Li</b>, H Zhang, C Meng, L Lorenzini, S Ingala, RH Davies, CH
+                            Sudre</div>
+                    </div>
+                </li>
+                <li data-tags="life">
+                    <div class="venue"><b>BIBM</b>2026</div>
+                    <div>
+                        <div class="title">CenSynCMB: Centre Maps and Physics-Guided Synthesis for Microbleed Detection 🔬</div>
+                        <div class="authors">L He, H Zhang, <b>K Li</b>, AF Saccoh, S Ingala, R Rehwald, M de Bruijne, F
+                            Barkhof, RH Davies, CH Sudre</div>
+                    </div>
+                </li>
+                <li data-tags="life">
+                    <div class="venue"><b>BIBM</b>2025</div>
+                    <div>
+                        <div class="title">Agnostic Biomolecular Binding Affinity Prediction via Frame Averaging Graph
+                            Transformer 🔬</div>
+                        <div class="authors"><b>K Li</b>, L He, X Xiao, S Deng, Z Zhong, Y Yang, G Yang</div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <footer>© 2026 Krinos Li</footer>
     </div>
 
-    <!-- Publications -->
-    <div class="container" id="first-content">
-        <div class="page-title">
-            <h1 class="title">Selected Publications</h1>
-            <p class="pub-summary">
-                My research spans <b>Multimodal AI🪬</b>, <b>Agentic AI🦾</b>, and <b>AI for Life Science🔬</b>. I have multiple peer-reviewed publications at leading academic venues, including <b>Nature Biomedical Engineering</b>, <b>Pharmacological Research</b>, <b>ACL</b>, <b>ICASSP</b>, <b>MICCAI</b>, <b>BIBM</b>.
-                <br>* indicates equal contribution.
-            </p>
-
-            <!-- ===== Journals ===== -->
-            <h2 class="pub-year-heading">Journals</h2>
-
-            <div class="pub-item">
-                <div class="pub-venue">Nature Biomedical Engineering, 2026</div>
-                <div class="pub-title">DeepDrugDiscovery Identifies Blood&ndash;Brain Barrier Permeable Autophagy
-                    Enhancers for Alzheimer's Disease 🪬🔬</div>
-                <div class="pub-authors">Y Dong*, X Xiao*, XX Zhuang*, W Wu*, ZY Wang, S Zhang, JT Li, K Zhang, WY Fu,
-                    JM Chen, SH Xiong, S Deng, <span class="me">K Li</span>, C Ma, W Jin, X Jin, Q Cai, HM Shen, M Li, H
-                    Su, JB Wan, H Yu, D Ouyang, K Ye, EF Fang, CS Tan, G Yang, Z Niu, JH Lu</div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-venue">Pharmacological Research, 2026</div>
-                <div class="pub-title">Isoginkgetin Protects Against Degeneration of ALS Motor Neurons via Regulating
-                    the GSK-3&beta;&ndash;TFEB Signaling Axis 🪬🔬</div>
-                <div class="pub-authors">A Li, X Xiao, G Liu, <span class="me">K Li</span>, Y Ling, S Deng, C Xu, SQ
-                    Cao, J Wen, G Lu, G Yang, EF Fang, D Qin, H Su</div>
-            </div>
-
-            <!-- ===== Conferences ===== -->
-            <h2 class="pub-year-heading">Conferences</h2>
-
-            <div class="pub-item">
-                <div class="pub-venue">ACL Main Conference 2026</div>
-                <div class="pub-title">Musical Score Understanding Benchmark: Evaluating Large Language Models'
-                    Comprehension of Complete Musical Scores 🪬</div>
-                <div class="pub-authors">C Dai*, Y Yang*, <span class="me">K Li*</span>, H Zhou, S Liang, Z Bo, E Liu, G
-                    Jin, H An, H Zhang, et al.</div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-venue">ACL Findings 2026</div>
-                <div class="pub-title">How Adversarial Environments Mislead Agentic AI? 🦾</div>
-                <div class="pub-authors">Z Zhan, H Zhou, Z Li, P Jing, <span class="me">K Li</span>, H Haddadi</div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-venue">EuroMLSys 2026</div>
-                <div class="pub-title">Systems-Level Attack Surface of Edge Agent Deployments on IoT 🦾</div>
-                <div class="pub-authors">Z Zhan, <span class="me">K Li</span>, Y Zhang, H Haddadi</div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-venue">ACM Conference on AI and Agentic Systems 2026</div>
-                <div class="pub-title">HearthNet: Edge Multi-Agent Orchestration for Smart Homes 🦾</div>
-                <div class="pub-authors">Z Zhan, <span class="me">K Li</span>, Y Zhang, H Haddadi</div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-venue">MICCAI 2026</div>
-                <div class="pub-title">A Unified Framework for Joint Detection of Lacunes and Enlarged Perivascular Spaces 🔬</div>
-                <div class="pub-authors">L He, <span class="me">K Li</span>, R He, S Ingala, L Lorenzini, M de Bruijne, F Barkhof, RH Davies, CH Sudre</div>
-            </div>
-            
-            <div class="pub-item">
-                <div class="pub-venue">ICASSP 2026</div>
-                <div class="pub-title">Swin-DS: A Deeply Supervised Transformer with Geometric Guidance for Robust
-                    Lacune Detection 🔬</div>
-                <div class="pub-authors">L He, <span class="me">K Li</span>, H Zhang, C Meng, L Lorenzini, S Ingala, RH
-                    Davies, CH Sudre</div>
-            </div>
-
-            <div class="pub-item">
-                <div class="pub-venue">BIBM 2025</div>
-                <div class="pub-title">Agnostic Biomolecular Binding Affinity Prediction via Frame Averaging Graph
-                    Transformer 🔬</div>
-                <div class="pub-authors"><span class="me">K Li</span>, L He, X Xiao, S Deng, Z Zhong, Y Yang, G Yang
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>
-                Built on the <a href="https://shikun.io/projects/clarity">Clarity Template</a> by <a
-                    href="https://shikun.io/">Shikun Liu</a>.
-            </p>
-        </div>
-    </footer>
-
+    <script src="assets/morph.js"></script>
+    <script>
+        const buttons = document.querySelectorAll(".filters button");
+        const items = document.querySelectorAll(".pub-list li");
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const filter = button.dataset.filter;
+                buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === button)));
+                items.forEach((item) => {
+                    item.hidden = filter !== "all" && !item.dataset.tags.split(" ").includes(filter);
+                });
+                document.querySelectorAll("section").forEach((section) => {
+                    section.hidden = ![...section.querySelectorAll(".pub-list li")].some((li) => !li.hidden);
+                });
+            });
+        });
+    </script>
+    <script src="assets/highlight.js"></script>
+    <script>highlight(".tint");</script>
 </body>
 
 </html>
