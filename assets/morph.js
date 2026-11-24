@@ -8,7 +8,7 @@
     const parseColor = (value, fallback) => (value ? value.split(",").map((c) => Number(c) / 255) : fallback);
     const PALETTE = {
         night: { bg: [5, 5, 6], fg: [235, 235, 240], glow: [158, 219, 255] },
-        day: { bg: [243, 239, 230], fg: [36, 31, 28], glow: [62, 81, 102] },
+        day: { bg: [243, 239, 230], fg: [106, 132, 158], glow: [168, 196, 220] },
     };
     const scale = (rgb) => rgb.map((c) => c / 255);
     let fg = parseColor(canvas.dataset.fg, [1, 1, 1]);
@@ -807,9 +807,11 @@
         const view = lookAt(eye, [0, -0.2, -3], [0, 1, 0]);
         const viewProj = multiply(perspective((48 * Math.PI) / 180, aspect, 0.1, 60), view);
         const wide = aspect > 1.1;
-        const sizeFactor = wide ? 1 : 0.62;
         const from = shapes[state.from];
         const to = shapes[state.to];
+        const armScale = (shape) => (shape.kind === KIND.arm && !wide ? 1.85 : 1);
+        const sizeFactor = wide ? 1 : 0.62;
+        const armMix = ((from.kind === KIND.arm ? 1 : 0) * (1 - m)) + ((to.kind === KIND.arm ? 1 : 0) * m);
 
         bindAttr(attr.from, from.buffer);
         bindAttr(attr.to, to.buffer);
@@ -828,15 +830,18 @@
         gl.uniform1f(u.uToKind, to.kind);
         gl.uniform1f(u.uFromTilt, from.tilt);
         gl.uniform1f(u.uToTilt, to.tilt);
-        gl.uniform1f(u.uFromScale, from.scale * sizeFactor);
-        gl.uniform1f(u.uToScale, to.scale * sizeFactor);
+        gl.uniform1f(u.uFromScale, from.scale * sizeFactor * armScale(from));
+        gl.uniform1f(u.uToScale, to.scale * sizeFactor * armScale(to));
         gl.uniform1f(u.uFromShift, from.shift || 0);
         gl.uniform1f(u.uToShift, to.shift || 0);
         gl.uniform1f(u.uFromDrop, from.drop || 0);
         gl.uniform1f(u.uToDrop, to.drop || 0);
         gl.uniform1f(u.uFromRoll, from.roll || 0);
         gl.uniform1f(u.uToRoll, to.roll || 0);
-        gl.uniform3f(u.uCenter, wide ? 3.0 : 0, wide ? 0.25 : 1.0, wide ? -1.0 : -2.5);
+        gl.uniform3f(u.uCenter,
+            wide ? 3.0 : armMix * 1.15,
+            wide ? 0.25 : 1.0 - armMix * 1.35,
+            wide ? -1.0 : -2.5 + armMix * 1.35);
         gl.uniform3f(u.uEye, eye[0], eye[1], eye[2]);
 
         gl.clear(gl.COLOR_BUFFER_BIT);
