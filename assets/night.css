@@ -78,7 +78,7 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--und
 a:hover { text-decoration-color: var(--underline-hover); }
 b { font-weight: 500; color: var(--strong); }
 
-#wave { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
+#wave { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .veil { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: var(--veil); }
 .veil.dense { background: var(--veil-dense); }
 .page { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; padding: 0 32px; }
