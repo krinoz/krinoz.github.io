@@ -248,10 +248,11 @@
         const armPoint = () => {
             const major = rand() < 0.72;
             const arm = major ? Math.floor(rand() * 2) : 2 + Math.floor(rand() * 2);
-            const t = Math.pow(rand(), 0.9);
-            const r = 0.28 + 2.45 * t;
+            // Stop short of the old outer tips, and keep the end of the arm from fraying.
+            const t = Math.pow(rand(), 0.9) * 0.66;
+            const r = 0.3 + 3.45 * t;
             const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(r / 0.3) * 2.0;
-            const spread = (major ? 0.1 : 0.15) * (0.45 + 0.75 * t);
+            const spread = (major ? 0.16 : 0.22) * (0.55 + 0.3 * t);
             const along = [Math.cos(a), 0, Math.sin(a)];
             const perp = [-Math.sin(a), 0, Math.cos(a)];
             const p = add3(scale3(along, r), scale3(perp, gauss() * spread));
@@ -262,27 +263,23 @@
             const u = n / N;
             let p;
             let bright;
-            if (u < 0.16) {
-                const q = [gauss() * 0.28, gauss() * 0.14, gauss() * 0.28];
+            if (u < 0.2) {
+                const q = [gauss() * 0.32, gauss() * 0.17, gauss() * 0.32];
                 p = q;
                 bright = 1.9 - Math.min(len3(q), 1) * 0.9;
             } else if (u < 0.78) {
                 const s = armPoint();
                 p = s.p;
-                bright = (s.major ? 1.15 : 0.85) + 0.55 * Math.exp(-s.t * 2.5);
+                bright = (s.major ? 1.15 : 0.8) + 0.6 * Math.exp(-s.t * 2.5);
             } else if (u < 0.84) {
                 const s = armPoint();
-                p = add3(s.p, [gauss() * 0.03, gauss() * 0.015, gauss() * 0.03]);
+                p = add3(s.p, [gauss() * 0.04, gauss() * 0.02, gauss() * 0.04]);
                 bright = 1.9;
-            } else if (u < 0.98) {
-                const r = Math.min(-0.7 * Math.log(rand() + 1e-6), 2.0);
-                const a = rand() * Math.PI * 2;
-                p = [Math.cos(a) * r, gauss() * 0.04, Math.sin(a) * r];
-                bright = 0.72;
             } else {
-                p = onSphere(1.2 + rand() * 1.8);
-                p[1] *= 0.6;
-                bright = 0.3;
+                const r = Math.min(-0.85 * Math.log(rand() + 1e-6), 2.2);
+                const a = rand() * Math.PI * 2;
+                p = [Math.cos(a) * r, gauss() * 0.06, Math.sin(a) * r];
+                bright = 0.5;
             }
             data.set(p, n * 3);
             tag[n] = -bright;
@@ -555,11 +552,7 @@
             float depth = position.w;
             float sizeBoost = clamp(0.75 + 0.25 * bright, 0.6, 1.4);
             float armness = mix(step(2.5, uFromKind) * step(uFromKind, 3.5), step(2.5, uToKind) * step(uToKind, 3.5), uMix);
-            float galaxyness = mix(step(3.5, uFromKind), step(3.5, uToKind), uMix);
-            // Galaxy stars stay smaller than the solid shapes. Density comes from the distribution.
-            float solidSize = clamp(15.0 / depth, 0.9, 3.4 + armness * 2.2);
-            float starSize = clamp(7.0 / depth, 0.85, 1.45);
-            gl_PointSize = uPixelRatio * mix(solidSize, starSize, galaxyness) * sizeBoost * (1.0 + armness * 0.45) * (1.0 + glow * 1.8);
+            gl_PointSize = uPixelRatio * clamp(15.0 / depth, 0.9, 3.4 + armness * 2.2) * sizeBoost * (1.0 + armness * 0.45) * (1.0 + glow * 1.8);
             vGlow = clamp(glow, 0.0, 1.0);
             float waveness = mix(step(uFromKind, 0.5), step(uToKind, 0.5), uMix);
             float crest = mix(0.6, 0.35 + 0.55 * smoothstep(-0.5, 0.65, p.y), waveness);
