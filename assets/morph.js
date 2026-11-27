@@ -249,9 +249,9 @@
             const major = rand() < 0.72;
             const arm = major ? Math.floor(rand() * 2) : 2 + Math.floor(rand() * 2);
             const t = Math.pow(rand(), 0.9);
-            const r = 0.26 + 2.2 * t;
+            const r = 0.28 + 2.45 * t;
             const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(r / 0.3) * 2.0;
-            const spread = (major ? 0.075 : 0.11) * (0.4 + 0.7 * t);
+            const spread = (major ? 0.1 : 0.15) * (0.45 + 0.75 * t);
             const along = [Math.cos(a), 0, Math.sin(a)];
             const perp = [-Math.sin(a), 0, Math.cos(a)];
             const p = add3(scale3(along, r), scale3(perp, gauss() * spread));
@@ -262,15 +262,15 @@
             const u = n / N;
             let p;
             let bright;
-            if (u < 0.14) {
+            if (u < 0.16) {
                 const q = [gauss() * 0.28, gauss() * 0.14, gauss() * 0.28];
                 p = q;
                 bright = 1.9 - Math.min(len3(q), 1) * 0.9;
-            } else if (u < 0.9) {
+            } else if (u < 0.78) {
                 const s = armPoint();
                 p = s.p;
-                bright = (s.major ? 1.25 : 0.95) + 0.55 * Math.exp(-s.t * 2.5);
-            } else if (u < 0.95) {
+                bright = (s.major ? 1.15 : 0.85) + 0.55 * Math.exp(-s.t * 2.5);
+            } else if (u < 0.84) {
                 const s = armPoint();
                 p = add3(s.p, [gauss() * 0.03, gauss() * 0.015, gauss() * 0.03]);
                 bright = 1.9;
@@ -556,7 +556,10 @@
             float sizeBoost = clamp(0.75 + 0.25 * bright, 0.6, 1.4);
             float armness = mix(step(2.5, uFromKind) * step(uFromKind, 3.5), step(2.5, uToKind) * step(uToKind, 3.5), uMix);
             float galaxyness = mix(step(3.5, uFromKind), step(3.5, uToKind), uMix);
-            gl_PointSize = uPixelRatio * clamp(15.0 / depth, 0.9 + galaxyness * 2.6, 3.4 + armness * 2.2 + galaxyness * 2.4) * sizeBoost * (1.0 + armness * 0.45) * (1.0 + galaxyness * 1.0) * (1.0 + glow * 1.8);
+            // Galaxy stars stay smaller than the solid shapes. Density comes from the distribution.
+            float solidSize = clamp(15.0 / depth, 0.9, 3.4 + armness * 2.2);
+            float starSize = clamp(7.0 / depth, 0.85, 1.45);
+            gl_PointSize = uPixelRatio * mix(solidSize, starSize, galaxyness) * sizeBoost * (1.0 + armness * 0.45) * (1.0 + glow * 1.8);
             vGlow = clamp(glow, 0.0, 1.0);
             float waveness = mix(step(uFromKind, 0.5), step(uToKind, 0.5), uMix);
             float crest = mix(0.6, 0.35 + 0.55 * smoothstep(-0.5, 0.65, p.y), waveness);
