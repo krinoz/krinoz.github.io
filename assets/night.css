@@ -87,10 +87,12 @@ nav { display: flex; justify-content: space-between; align-items: center; paddin
 nav .links { display: flex; align-items: center; gap: 28px; }
 nav a { text-decoration: none; opacity: .7; }
 nav a:hover, nav a.active { opacity: 1; }
-.theme { font: inherit; font-size: 14px; color: var(--ink); background: transparent; border: 1px solid var(--pill-line);
-    border-radius: 999px; padding: 4px 12px; cursor: pointer; }
-.theme:hover { border-color: var(--pill-hover-line); }
-html.day .theme[aria-pressed="true"] { color: var(--pill-on); background: var(--pill-on-bg); border-color: var(--pill-on-bg); }
+.theme { display: flex; }
+.theme button { font: inherit; font-size: 13px; line-height: 1.2; color: var(--ink); background: transparent;
+    border: 1px solid var(--pill-line); border-radius: 0; padding: 5px 10px; cursor: pointer; }
+.theme button + button { margin-left: -1px; }
+.theme button:hover { border-color: var(--pill-hover-line); }
+.theme button[aria-pressed="true"] { color: var(--pill-on); background: var(--pill-on-bg); border-color: var(--pill-on-bg); position: relative; }
 
 /* ===== Home ===== */
 .hero { position: relative; min-height: calc(100svh - 96px); display: flex; flex-direction: column; justify-content: center; padding-bottom: 12vh; }
@@ -161,7 +163,8 @@ p .tint, .pub-head b.tint { padding: 0.02em 0.32em; }
 footer { padding: 64px 0 40px; font-size: 13px; color: var(--faint); }
 
 @media (max-width: 760px) {
-    nav { gap: 12px; }
+    nav { gap: 12px; flex-wrap: wrap; }
+    nav > span { white-space: nowrap; }
     nav .links { gap: 14px; flex-wrap: wrap; justify-content: flex-end; }
     section { grid-template-columns: 1fr; gap: 20px; }
     .hero .portrait { width: 132px; height: 132px; }

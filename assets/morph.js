@@ -249,9 +249,9 @@
             const major = rand() < 0.72;
             const arm = major ? Math.floor(rand() * 2) : 2 + Math.floor(rand() * 2);
             const t = Math.pow(rand(), 0.9);
-            const r = 0.3 + 3.45 * t;
+            const r = 0.26 + 2.2 * t;
             const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(r / 0.3) * 2.0;
-            const spread = (major ? 0.2 : 0.28) * (0.5 + t);
+            const spread = (major ? 0.075 : 0.11) * (0.4 + 0.7 * t);
             const along = [Math.cos(a), 0, Math.sin(a)];
             const perp = [-Math.sin(a), 0, Math.cos(a)];
             const p = add3(scale3(along, r), scale3(perp, gauss() * spread));
@@ -262,23 +262,23 @@
             const u = n / N;
             let p;
             let bright;
-            if (u < 0.2) {
-                const q = [gauss() * 0.32, gauss() * 0.17, gauss() * 0.32];
+            if (u < 0.14) {
+                const q = [gauss() * 0.28, gauss() * 0.14, gauss() * 0.28];
                 p = q;
                 bright = 1.9 - Math.min(len3(q), 1) * 0.9;
-            } else if (u < 0.72) {
+            } else if (u < 0.9) {
                 const s = armPoint();
                 p = s.p;
-                bright = (s.major ? 1.15 : 0.8) + 0.6 * Math.exp(-s.t * 2.5);
-            } else if (u < 0.78) {
+                bright = (s.major ? 1.25 : 0.95) + 0.55 * Math.exp(-s.t * 2.5);
+            } else if (u < 0.95) {
                 const s = armPoint();
-                p = add3(s.p, [gauss() * 0.04, gauss() * 0.02, gauss() * 0.04]);
+                p = add3(s.p, [gauss() * 0.03, gauss() * 0.015, gauss() * 0.03]);
                 bright = 1.9;
-            } else if (u < 0.94) {
-                const r = Math.min(-0.85 * Math.log(rand() + 1e-6), 2.9);
+            } else if (u < 0.98) {
+                const r = Math.min(-0.7 * Math.log(rand() + 1e-6), 2.0);
                 const a = rand() * Math.PI * 2;
-                p = [Math.cos(a) * r, gauss() * 0.06, Math.sin(a) * r];
-                bright = 0.5;
+                p = [Math.cos(a) * r, gauss() * 0.04, Math.sin(a) * r];
+                bright = 0.72;
             } else {
                 p = onSphere(1.2 + rand() * 1.8);
                 p[1] *= 0.6;
@@ -400,14 +400,23 @@
             float j2 = -1.0 + 0.14 * sin(t);
             float j3 = -1.15 + 0.16 * sin(t + 1.1);
             float j4 = 0.15 + 0.1 * sin(t * 0.7);
-            float j5 = 0.7 + 0.12 * sin(t + 2.0);
-            float j6 = 1.57 + 0.18 * sin(t * 0.5);
-            float grip = 0.014 + 0.012 * sin(uTime * 0.9);
+            float j5 = 2.15 + 0.05 * sin(t + 2.0);
+            float j6 = -1.74 + 0.06 * sin(t * 0.5);
+            float grip = 0.10;
             if (link > 7.5) {
+                // Lengthen along the jaw and keep each finger narrow, so the two tips read as prongs.
+                p.x *= 2.1;
+                p.y *= 0.72;
+                p.z *= 0.55;
+                n.x /= 2.1;
+                n.y /= 0.72;
+                n.z /= 0.55;
                 p.y += link < 8.5 ? grip : -grip;
                 link = 7.0;
             }
             if (link > 6.5) {
+                p = rotZ(rotX(p, -1.5708), -1.5708);
+                n = rotZ(rotX(n, -1.5708), -1.5708);
                 p = rotZ(rotY(p, -1.5708), 3.1416);
                 n = rotZ(rotY(n, -1.5708), 3.1416);
                 p += vec3(0.0, 0.0, 0.15539);
@@ -479,13 +488,15 @@
                 vec3 n = normal;
                 float code = -tag - 2.0;
                 float link = mod(code, 16.0);
+                float finger = step(7.5, link);
                 armTransform(q, n, link);
-                q += n * 0.016;
+                if (finger < 0.5) q += n * 0.016;
                 q = rotY(q, -0.55);
                 n = rotY(n, -0.55);
                 q = q * scale + vec3(0.15, -3.45, 0.0);
                 worldNormal = n;
                 bright = 0.7 + 0.9 * floor(code / 16.0) / 14.0;
+                if (finger > 0.5) bright = max(bright, 1.45);
                 return q + uCenter;
             } else {
                 q = rotX(rotY(p, uTime * 0.065), tilt) * scale;
@@ -544,7 +555,8 @@
             float depth = position.w;
             float sizeBoost = clamp(0.75 + 0.25 * bright, 0.6, 1.4);
             float armness = mix(step(2.5, uFromKind) * step(uFromKind, 3.5), step(2.5, uToKind) * step(uToKind, 3.5), uMix);
-            gl_PointSize = uPixelRatio * clamp(15.0 / depth, 0.9, 3.4 + armness * 2.2) * sizeBoost * (1.0 + armness * 0.45) * (1.0 + glow * 1.8);
+            float galaxyness = mix(step(3.5, uFromKind), step(3.5, uToKind), uMix);
+            gl_PointSize = uPixelRatio * clamp(15.0 / depth, 0.9 + galaxyness * 2.6, 3.4 + armness * 2.2 + galaxyness * 2.4) * sizeBoost * (1.0 + armness * 0.45) * (1.0 + galaxyness * 1.0) * (1.0 + glow * 1.8);
             vGlow = clamp(glow, 0.0, 1.0);
             float waveness = mix(step(uFromKind, 0.5), step(uToKind, 0.5), uMix);
             float crest = mix(0.6, 0.35 + 0.55 * smoothstep(-0.5, 0.65, p.y), waveness);
@@ -812,6 +824,9 @@
         const armScale = (shape) => (shape.kind === KIND.arm && !wide ? 1.85 : 1);
         const sizeFactor = wide ? 1 : 0.62;
         const armMix = ((from.kind === KIND.arm ? 1 : 0) * (1 - m)) + ((to.kind === KIND.arm ? 1 : 0) * m);
+        // Galaxy already sits on the right via its own shift. Every other shape uses this offset,
+        // including on a narrow canvas, where it used to collapse to zero except while the arm showed.
+        const rightMix = ((from.kind === KIND.galaxy ? 0 : 1) * (1 - m)) + ((to.kind === KIND.galaxy ? 0 : 1) * m);
 
         bindAttr(attr.from, from.buffer);
         bindAttr(attr.to, to.buffer);
@@ -839,7 +854,7 @@
         gl.uniform1f(u.uFromRoll, from.roll || 0);
         gl.uniform1f(u.uToRoll, to.roll || 0);
         gl.uniform3f(u.uCenter,
-            wide ? 3.0 : armMix * 1.15,
+            wide ? 3.0 : 1.15 * rightMix,
             wide ? 0.25 : 1.0 - armMix * 1.35,
             wide ? -1.0 : -2.5 + armMix * 1.35);
         gl.uniform3f(u.uEye, eye[0], eye[1], eye[2]);
