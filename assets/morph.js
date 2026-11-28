@@ -250,9 +250,9 @@
             const arm = major ? Math.floor(rand() * 2) : 2 + Math.floor(rand() * 2);
             // Stop short of the old outer tips, and keep the end of the arm from fraying.
             const t = Math.pow(rand(), 0.9) * 0.66;
-            const r = 0.5 + 3.15 * t;
-            const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(r / 0.45) * 2.0;
-            const spread = (major ? 0.22 : 0.3) * (0.4 + 0.85 * t);
+            const r = 0.48 + 3.15 * t;
+            const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(r / 0.42) * 2.0;
+            const spread = (major ? 0.3 : 0.38) * (0.48 + 0.75 * t);
             const along = [Math.cos(a), 0, Math.sin(a)];
             const perp = [-Math.sin(a), 0, Math.cos(a)];
             const p = add3(scale3(along, r), scale3(perp, gauss() * spread));
@@ -263,20 +263,20 @@
             const u = n / N;
             let p;
             let bright;
-            if (u < 0.1) {
-                const q = [gauss() * 0.16, gauss() * 0.08, gauss() * 0.16];
+            if (u < 0.05) {
+                const q = [gauss() * 0.08, gauss() * 0.04, gauss() * 0.08];
                 p = q;
                 bright = 1.9 - Math.min(len3(q), 1) * 0.9;
-            } else if (u < 0.86) {
+            } else if (u < 0.92) {
                 const s = armPoint();
                 p = s.p;
                 bright = (s.major ? 1.15 : 0.8) + 0.6 * Math.exp(-s.t * 2.5);
-            } else if (u < 0.92) {
+            } else if (u < 0.97) {
                 const s = armPoint();
                 p = add3(s.p, [gauss() * 0.04, gauss() * 0.02, gauss() * 0.04]);
                 bright = 1.9;
             } else {
-                const r = 0.7 + Math.min(-0.55 * Math.log(rand() + 1e-6), 1.3);
+                const r = 1.4 + Math.min(-0.35 * Math.log(rand() + 1e-6), 0.7);
                 const a = rand() * Math.PI * 2;
                 p = [Math.cos(a) * r, gauss() * 0.05, Math.sin(a) * r];
                 bright = 0.45;
