@@ -248,11 +248,12 @@
         const armPoint = () => {
             const major = rand() < 0.72;
             const arm = major ? Math.floor(rand() * 2) : 2 + Math.floor(rand() * 2);
-            // Stop short of the old outer tips, and keep the end of the arm from fraying.
-            const t = Math.pow(rand(), 0.9) * 0.66;
-            const r = 0.48 + 3.15 * t;
-            const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(r / 0.42) * 2.0;
-            const spread = (major ? 0.3 : 0.38) * (0.48 + 0.75 * t);
+            // Stop short of the old outer tips. The inner sample reaches the core so the arms stay attached.
+            const inner = rand() < 0.36;
+            const t = inner ? Math.pow(rand(), 0.45) * 0.3 : 0.24 + Math.pow(rand(), 0.85) * 0.42;
+            const r = 0.08 + 3.45 * t;
+            const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(Math.max(r, 0.12) / 0.32) * 2.0;
+            const spread = (major ? 0.3 : 0.38) * (0.42 + 0.8 * t);
             const along = [Math.cos(a), 0, Math.sin(a)];
             const perp = [-Math.sin(a), 0, Math.cos(a)];
             const p = add3(scale3(along, r), scale3(perp, gauss() * spread));
@@ -264,7 +265,7 @@
             let p;
             let bright;
             if (u < 0.05) {
-                const q = [gauss() * 0.08, gauss() * 0.04, gauss() * 0.08];
+                const q = [gauss() * 0.12, gauss() * 0.06, gauss() * 0.12];
                 p = q;
                 bright = 1.9 - Math.min(len3(q), 1) * 0.9;
             } else if (u < 0.92) {
