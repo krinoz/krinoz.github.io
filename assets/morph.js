@@ -248,12 +248,10 @@
         const armPoint = () => {
             const major = rand() < 0.72;
             const arm = major ? Math.floor(rand() * 2) : 2 + Math.floor(rand() * 2);
-            // Stop short of the old outer tips. The inner sample reaches the core so the arms stay attached.
-            const inner = rand() < 0.36;
-            const t = inner ? Math.pow(rand(), 0.45) * 0.3 : 0.24 + Math.pow(rand(), 0.85) * 0.42;
-            const r = 0.08 + 3.45 * t;
-            const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(Math.max(r, 0.12) / 0.32) * 2.0;
-            const spread = (major ? 0.3 : 0.38) * (0.42 + 0.8 * t);
+            const t = Math.pow(rand(), 0.9);
+            const r = 0.3 + 3.45 * t;
+            const a = arm * (Math.PI / 2) + (arm >= 2 ? 0.35 : 0) + Math.log(r / 0.3) * 2.0;
+            const spread = (major ? 0.2 : 0.28) * (0.5 + t);
             const along = [Math.cos(a), 0, Math.sin(a)];
             const perp = [-Math.sin(a), 0, Math.cos(a)];
             const p = add3(scale3(along, r), scale3(perp, gauss() * spread));
@@ -264,23 +262,27 @@
             const u = n / N;
             let p;
             let bright;
-            if (u < 0.05) {
-                const q = [gauss() * 0.12, gauss() * 0.06, gauss() * 0.12];
+            if (u < 0.2) {
+                const q = [gauss() * 0.32, gauss() * 0.17, gauss() * 0.32];
                 p = q;
                 bright = 1.9 - Math.min(len3(q), 1) * 0.9;
-            } else if (u < 0.92) {
+            } else if (u < 0.72) {
                 const s = armPoint();
                 p = s.p;
                 bright = (s.major ? 1.15 : 0.8) + 0.6 * Math.exp(-s.t * 2.5);
-            } else if (u < 0.97) {
+            } else if (u < 0.78) {
                 const s = armPoint();
                 p = add3(s.p, [gauss() * 0.04, gauss() * 0.02, gauss() * 0.04]);
                 bright = 1.9;
-            } else {
-                const r = 1.4 + Math.min(-0.35 * Math.log(rand() + 1e-6), 0.7);
+            } else if (u < 0.94) {
+                const r = Math.min(-0.85 * Math.log(rand() + 1e-6), 2.9);
                 const a = rand() * Math.PI * 2;
-                p = [Math.cos(a) * r, gauss() * 0.05, Math.sin(a) * r];
-                bright = 0.45;
+                p = [Math.cos(a) * r, gauss() * 0.06, Math.sin(a) * r];
+                bright = 0.5;
+            } else {
+                p = onSphere(1.2 + rand() * 1.8);
+                p[1] *= 0.6;
+                bright = 0.3;
             }
             data.set(p, n * 3);
             tag[n] = -bright;
@@ -293,7 +295,9 @@
     // Each 10-byte record: int16 x, y, z (metres * ARM_POS_SCALE, in the link frame),
     // int8 normal * 127, uint8 packed link (low 4 bits) and material brightness (high 4 bits).
     const ARM_POS_SCALE = 8000;
-    const ARM_SRC = document.currentScript ? new URL("arm-points.bin", document.currentScript.src).href : null;
+    const ARM_SRC = document.currentScript
+        ? new URL("arm-points.bin" + new URL(document.currentScript.src).search, document.currentScript.src).href
+        : null;
 
     function decodeArm(buffer) {
         const view = new DataView(buffer);
@@ -398,23 +402,23 @@
             float j2 = -1.0 + 0.14 * sin(t);
             float j3 = -1.15 + 0.16 * sin(t + 1.1);
             float j4 = 0.15 + 0.1 * sin(t * 0.7);
-            float j5 = 2.15 + 0.05 * sin(t + 2.0);
-            float j6 = -1.74 + 0.06 * sin(t * 0.5);
-            float grip = 0.10;
+            float j5 = 2.80 + 0.04 * sin(t + 2.0);
+            float j6 = 2.00 + 0.05 * sin(t * 0.5);
+            float grip = 0.08;
             if (link > 7.5) {
-                // Lengthen along the jaw and keep each finger narrow, so the two tips read as prongs.
-                p.x *= 2.1;
-                p.y *= 0.72;
+                // Two jaws, long enough to read, narrow enough to stay apart.
+                p.x *= 1.7;
+                p.y *= 0.75;
                 p.z *= 0.55;
-                n.x /= 2.1;
-                n.y /= 0.72;
+                n.x /= 1.7;
+                n.y /= 0.75;
                 n.z /= 0.55;
                 p.y += link < 8.5 ? grip : -grip;
                 link = 7.0;
             }
             if (link > 6.5) {
-                p = rotZ(rotX(p, -1.5708), -1.5708);
-                n = rotZ(rotX(n, -1.5708), -1.5708);
+                p = rotX(p, -1.5708);
+                n = rotX(n, -1.5708);
                 p = rotZ(rotY(p, -1.5708), 3.1416);
                 n = rotZ(rotY(n, -1.5708), 3.1416);
                 p += vec3(0.0, 0.0, 0.15539);
@@ -552,8 +556,7 @@
 
             float depth = position.w;
             float sizeBoost = clamp(0.75 + 0.25 * bright, 0.6, 1.4);
-            float armness = mix(step(2.5, uFromKind) * step(uFromKind, 3.5), step(2.5, uToKind) * step(uToKind, 3.5), uMix);
-            gl_PointSize = uPixelRatio * clamp(15.0 / depth, 0.9, 3.4 + armness * 2.2) * sizeBoost * (1.0 + armness * 0.45) * (1.0 + glow * 1.8);
+            gl_PointSize = uPixelRatio * clamp(15.0 / depth, 0.9, 3.4) * sizeBoost * (1.0 + glow * 1.8);
             vGlow = clamp(glow, 0.0, 1.0);
             float waveness = mix(step(uFromKind, 0.5), step(uToKind, 0.5), uMix);
             float crest = mix(0.6, 0.35 + 0.55 * smoothstep(-0.5, 0.65, p.y), waveness);
